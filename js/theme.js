@@ -5,7 +5,6 @@ function initializeTheme() {
         document.documentElement.setAttribute("data-theme", savedTheme);
     }
     themeButton.addEventListener("click", () => {
-        console.log("button clicked");
         const currentTheme =
             document.documentElement.getAttribute("data-theme");
         const newTheme =
