@@ -113,6 +113,24 @@ function initializePersonalGenerator() {
     renderPerson(generatePerson(min, max));
 }
 
+function generateSSN() {
+    // Valid-format SSN: avoids area 666 and 900+ (never issued),
+    // avoids group 00 and serial 0000 (invalid by SSA rules).
+    let area;
+    do {
+        area = randomInt(1, 899);
+    } while (area === 666);
+
+    const group = randomInt(1, 99);
+    const serial = randomInt(1, 9999);
+
+    const areaStr = String(area).padStart(3, "0");
+    const groupStr = String(group).padStart(2, "0");
+    const serialStr = String(serial).padStart(4, "0");
+
+    return `${areaStr}-${groupStr}-${serialStr}`;
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     initializePersonalGenerator();
 });
