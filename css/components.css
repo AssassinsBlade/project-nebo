@@ -83,3 +83,21 @@ button:hover {
     border-color: transparent;
     filter: brightness(1.1);
 }
+.age-range-controls {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+}
+.age-range-inputs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.age-range-inputs input {
+    width: 70px;
+    padding: 0.4rem;
+    background: var(--background);
+    border: 1px solid var(--border);
+    border-radius: 0.4rem;
+    color: var(--text-primary);
+}
