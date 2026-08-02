@@ -63,13 +63,15 @@ function generatePerson(minAge, maxAge) {
 
     const dob = generateDOB(minAge, maxAge);
     const age = calculateAge(dob);
+    const ssn = generateSSN();
 
     return {
         firstName,
         lastName,
         fullName,
         dob,
-        age
+        age,
+        ssn
     };
 }
 
@@ -79,6 +81,7 @@ function renderPerson(person) {
     document.getElementById("fullName").textContent = person.fullName;
     document.getElementById("dob").textContent = formatDate(person.dob);
     document.getElementById("age").textContent = person.age;
+    document.getElementById("ssn").textContent = person.ssn;
 }
 
 function getAgeRange() {
