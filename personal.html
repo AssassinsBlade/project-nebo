@@ -32,7 +32,23 @@
             <label for="fullName">Full Name</label>
             <span id="fullName" class="field-value">—</span>
         </div>
+<div class="field-group">
+            <label for="dob">Date of Birth</label>
+            <span id="dob" class="field-value">—</span>
+        </div>
+        <div class="field-group">
+            <label for="age">Age</label>
+            <span id="age" class="field-value">—</span>
+        </div>
 
+        <div class="field-group age-range-controls">
+            <label>Age Range</label>
+            <div class="age-range-inputs">
+                <input type="number" id="minAge" value="18" min="0" max="120">
+                <span>to</span>
+                <input type="number" id="maxAge" value="65" min="0" max="120">
+            </div>
+        </div>
         <button id="regenerateBtn" class="primary-btn">Generate</button>
     </section>
 </main>
