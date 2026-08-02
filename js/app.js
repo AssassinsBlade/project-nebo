@@ -1,37 +1,7 @@
-function initializeTheme() {
+document.addEventListener("DOMContentLoaded", () => {
 
-    const themeButton = document.getElementById("themeToggle");
+    initializeTheme();
 
-    const savedTheme = localStorage.getItem("nebo-theme");
+    console.log("Project Nebo initialized.");
 
-    if (savedTheme) {
-        document.documentElement.setAttribute("data-theme", savedTheme);
-    }
-
-
-    themeButton.addEventListener("click", () => {
-
-        const currentTheme =
-            document.documentElement.getAttribute("data-theme");
-
-
-        const newTheme =
-            currentTheme === "light"
-                ? "dark"
-                : "light";
-
-
-        document.documentElement.setAttribute(
-            "data-theme",
-            newTheme
-        );
-
-
-        localStorage.setItem(
-            "nebo-theme",
-            newTheme
-        );
-
-    });
-
-}
+});
