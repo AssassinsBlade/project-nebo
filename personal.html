@@ -22,28 +22,61 @@
     <section class="generator-panel">
         <div class="field-group">
             <label for="firstName">First Name</label>
-            <span id="firstName" class="field-value">—</span>
+            <div class="field-value-wrap">
+                <span id="firstName" class="field-value">—</span>
+                <button class="copy-btn" data-target="firstName" title="Copy">📋</button>
+            </div>
         </div>
         <div class="field-group">
             <label for="lastName">Last Name</label>
-            <span id="lastName" class="field-value">—</span>
+            <div class="field-value-wrap">
+                <span id="lastName" class="field-value">—</span>
+                <button class="copy-btn" data-target="lastName" title="Copy">📋</button>
+            </div>
         </div>
         <div class="field-group">
             <label for="fullName">Full Name</label>
-            <span id="fullName" class="field-value">—</span>
+            <div class="field-value-wrap">
+                <span id="fullName" class="field-value">—</span>
+                <button class="copy-btn" data-target="fullName" title="Copy">📋</button>
+            </div>
         </div>
-<div class="field-group">
+        <div class="field-group">
             <label for="dob">Date of Birth</label>
-            <span id="dob" class="field-value">—</span>
+            <div class="field-value-wrap">
+                <span id="dob" class="field-value">—</span>
+                <button class="copy-btn" data-target="dob" title="Copy">📋</button>
+            </div>
         </div>
         <div class="field-group">
             <label for="age">Age</label>
-            <span id="age" class="field-value">—</span>
+            <div class="field-value-wrap">
+                <span id="age" class="field-value">—</span>
+                <button class="copy-btn" data-target="age" title="Copy">📋</button>
+            </div>
         </div>
-<div class="field-group">
+        <div class="field-group">
             <label for="ssn">SSN</label>
-            <span id="ssn" class="field-value">—</span>
+            <div class="field-value-wrap">
+                <span id="ssn" class="field-value">—</span>
+                <button class="copy-btn" data-target="ssn" title="Copy">📋</button>
+            </div>
         </div>
+        <div class="field-group">
+            <label for="state">State</label>
+            <div class="field-value-wrap">
+                <span id="state" class="field-value">—</span>
+                <button class="copy-btn" data-target="state" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
+            <label for="phone">Phone</label>
+            <div class="field-value-wrap">
+                <span id="phone" class="field-value">—</span>
+                <button class="copy-btn" data-target="phone" title="Copy">📋</button>
+            </div>
+        </div>
+
         <div class="field-group age-range-controls">
             <label>Age Range</label>
             <div class="age-range-inputs">
@@ -52,17 +85,19 @@
                 <input type="number" id="maxAge" value="65" min="0" max="120">
             </div>
         </div>
+
         <button id="regenerateBtn" class="primary-btn">Generate</button>
     </section>
 </main>
 <footer class="site-footer">
     <p>
-        Project Nebo v0.1.0-alpha |
+        Project Nebo v0.1.0-beta |
         Runs locally in your browser
     </p>
 </footer>
 <script src="js/theme.js"></script>
 <script src="js/personal.js"></script>
+<script src="js/clipboard.js"></script>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         initializeTheme();

@@ -1,16 +1,75 @@
 const FIRST_NAMES = [
-    "Avery", "Jordan", "Riley", "Casey", "Morgan",
-    "Taylor", "Quinn", "Reese", "Emerson", "Rowan",
-    "Hayden", "Skyler", "Elliot", "Finley", "Dakota",
-    "Sawyer", "Peyton", "Cameron", "Jamie", "Drew"
+    "Wei", "Fatima", "Carlos", "Aisha", "Liam",
+    "Yuki", "Diego", "Priya", "Malik", "Elena",
+    "Kwame", "Sofia", "Arjun", "Ngozi", "Hiro",
+    "Mateo", "Amara", "Dmitri", "Layla", "Noah",
+    "Mei", "Omar", "Isabella", "Kenji", "Zara",
+    "Lucas", "Aaliyah", "Ravi", "Chidi", "Emma"
 ];
 
 const LAST_NAMES = [
-    "Bennett", "Coleman", "Fletcher", "Hughes", "Mercer",
-    "Nolan", "Pierce", "Sinclair", "Whitfield", "Ashford",
-    "Barlow", "Chandler", "Donovan", "Ellison", "Grayson",
-    "Hartley", "Ingram", "Keaton", "Lambert", "Marsh"
+    "Nguyen", "Garcia", "Kim", "Patel", "Silva",
+    "Okafor", "Kowalski", "Hassan", "Yamamoto", "Rossi",
+    "Kumar", "Diallo", "Andersson", "Santos", "Ivanov",
+    "Chen", "Abara", "Muller", "Osei", "Novak",
+    "Ferreira", "Choi", "Haddad", "Larsen", "Mendez",
+    "Wang", "Adeyemi", "Kovac", "Reyes", "Singh"
 ];
+
+const STATE_AREA_CODES = {
+    "Alabama": "205",
+    "Alaska": "907",
+    "Arizona": "602",
+    "Arkansas": "501",
+    "California": "213",
+    "Colorado": "303",
+    "Connecticut": "203",
+    "Delaware": "302",
+    "Florida": "305",
+    "Georgia": "404",
+    "Hawaii": "808",
+    "Idaho": "208",
+    "Illinois": "312",
+    "Indiana": "317",
+    "Iowa": "515",
+    "Kansas": "316",
+    "Kentucky": "502",
+    "Louisiana": "504",
+    "Maine": "207",
+    "Maryland": "410",
+    "Massachusetts": "617",
+    "Michigan": "313",
+    "Minnesota": "612",
+    "Mississippi": "601",
+    "Missouri": "314",
+    "Montana": "406",
+    "Nebraska": "402",
+    "Nevada": "702",
+    "New Hampshire": "603",
+    "New Jersey": "201",
+    "New Mexico": "505",
+    "New York": "212",
+    "North Carolina": "704",
+    "North Dakota": "701",
+    "Ohio": "216",
+    "Oklahoma": "405",
+    "Oregon": "503",
+    "Pennsylvania": "215",
+    "Rhode Island": "401",
+    "South Carolina": "803",
+    "South Dakota": "605",
+    "Tennessee": "615",
+    "Texas": "214",
+    "Utah": "801",
+    "Vermont": "802",
+    "Virginia": "804",
+    "Washington": "206",
+    "West Virginia": "304",
+    "Wisconsin": "414",
+    "Wyoming": "307"
+};
+
+const STATE_NAMES = Object.keys(STATE_AREA_CODES);
 
 function randomFromList(list) {
     const index = Math.floor(Math.random() * list.length);
@@ -24,15 +83,9 @@ function randomInt(min, max) {
 function generateDOB(minAge, maxAge) {
     const today = new Date();
     const age = randomInt(minAge, maxAge);
-
-    // Random birth year based on chosen age.
     const birthYear = today.getFullYear() - age;
-
-    // Random month/day, avoiding invalid Feb 30th type issues
-    // by capping day at 28 for simplicity.
     const birthMonth = randomInt(0, 11);
     const birthDay = randomInt(1, 28);
-
     const dob = new Date(birthYear, birthMonth, birthDay);
     return dob;
 }
@@ -56,6 +109,37 @@ function formatDate(date) {
     return `${month}/${day}/${year}`;
 }
 
+function generateSSN() {
+    let area;
+    do {
+        area = randomInt(1, 899);
+    } while (area === 666);
+
+    const group = randomInt(1, 99);
+    const serial = randomInt(1, 9999);
+
+    const areaStr = String(area).padStart(3, "0");
+    const groupStr = String(group).padStart(2, "0");
+    const serialStr = String(serial).padStart(4, "0");
+
+    return `${areaStr}-${groupStr}-${serialStr}`;
+}
+
+function generatePhone(state) {
+    const areaCode = STATE_AREA_CODES[state];
+
+    let exchange;
+    do {
+        const first = randomInt(2, 9);
+        const rest = randomInt(0, 99);
+        exchange = `${first}${String(rest).padStart(2, "0")}`;
+    } while (exchange.endsWith("11"));
+
+    const subscriber = String(randomInt(0, 9999)).padStart(4, "0");
+
+    return `(${areaCode}) ${exchange}-${subscriber}`;
+}
+
 function generatePerson(minAge, maxAge) {
     const firstName = randomFromList(FIRST_NAMES);
     const lastName = randomFromList(LAST_NAMES);
@@ -64,6 +148,8 @@ function generatePerson(minAge, maxAge) {
     const dob = generateDOB(minAge, maxAge);
     const age = calculateAge(dob);
     const ssn = generateSSN();
+    const state = randomFromList(STATE_NAMES);
+    const phone = generatePhone(state);
 
     return {
         firstName,
@@ -71,7 +157,9 @@ function generatePerson(minAge, maxAge) {
         fullName,
         dob,
         age,
-        ssn
+        ssn,
+        state,
+        phone
     };
 }
 
@@ -82,6 +170,8 @@ function renderPerson(person) {
     document.getElementById("dob").textContent = formatDate(person.dob);
     document.getElementById("age").textContent = person.age;
     document.getElementById("ssn").textContent = person.ssn;
+    document.getElementById("state").textContent = person.state;
+    document.getElementById("phone").textContent = person.phone;
 }
 
 function getAgeRange() {
@@ -91,7 +181,6 @@ function getAgeRange() {
     let min = parseInt(minInput.value, 10);
     let max = parseInt(maxInput.value, 10);
 
-    // Guard against invalid or reversed input.
     if (isNaN(min) || min < 0) min = 0;
     if (isNaN(max) || max > 120) max = 120;
     if (min > max) {
@@ -114,24 +203,6 @@ function initializePersonalGenerator() {
 
     const { min, max } = getAgeRange();
     renderPerson(generatePerson(min, max));
-}
-
-function generateSSN() {
-    // Valid-format SSN: avoids area 666 and 900+ (never issued),
-    // avoids group 00 and serial 0000 (invalid by SSA rules).
-    let area;
-    do {
-        area = randomInt(1, 899);
-    } while (area === 666);
-
-    const group = randomInt(1, 99);
-    const serial = randomInt(1, 9999);
-
-    const areaStr = String(area).padStart(3, "0");
-    const groupStr = String(group).padStart(2, "0");
-    const serialStr = String(serial).padStart(4, "0");
-
-    return `${areaStr}-${groupStr}-${serialStr}`;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
