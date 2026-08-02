@@ -1,1 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Generator | Project Nebo</title>
+    <link rel="stylesheet" href="css/theme.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+<header class="site-header">
+    <div>
+        <h1><a href="index.html" class="home-link">Project Nebo</a></h1>
+        <p>Personal Generator</p>
+    </div>
+    <button id="themeToggle">
+        🌙
+    </button>
+</header>
+<main class="container">
+    <section class="generator-panel">
+        <div class="field-group">
+            <label for="firstName">First Name</label>
+            <span id="firstName" class="field-value">—</span>
+        </div>
+        <div class="field-group">
+            <label for="lastName">Last Name</label>
+            <span id="lastName" class="field-value">—</span>
+        </div>
+        <div class="field-group">
+            <label for="fullName">Full Name</label>
+            <span id="fullName" class="field-value">—</span>
+        </div>
 
+        <button id="regenerateBtn" class="primary-btn">Generate</button>
+    </section>
+</main>
+<footer class="site-footer">
+    <p>
+        Project Nebo v0.1.0-alpha |
+        Runs locally in your browser
+    </p>
+</footer>
+<script src="js/theme.js"></script>
+<script src="js/personal.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        initializeTheme();
+    });
+</script>
+</body>
+</html>
