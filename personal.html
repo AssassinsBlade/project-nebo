@@ -63,6 +63,27 @@
             </div>
         </div>
         <div class="field-group">
+            <label for="phone">Phone</label>
+            <div class="field-value-wrap">
+                <span id="phone" class="field-value">—</span>
+                <button class="copy-btn" data-target="phone" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
+            <label for="street">Street</label>
+            <div class="field-value-wrap">
+                <span id="street" class="field-value">—</span>
+                <button class="copy-btn" data-target="street" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
+            <label for="city">City</label>
+            <div class="field-value-wrap">
+                <span id="city" class="field-value">—</span>
+                <button class="copy-btn" data-target="city" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
             <label for="state">State</label>
             <div class="field-value-wrap">
                 <span id="state" class="field-value">—</span>
@@ -70,13 +91,40 @@
             </div>
         </div>
         <div class="field-group">
-            <label for="phone">Phone</label>
+            <label for="zip">Zip</label>
             <div class="field-value-wrap">
-                <span id="phone" class="field-value">—</span>
-                <button class="copy-btn" data-target="phone" title="Copy">📋</button>
+                <span id="zip" class="field-value">—</span>
+                <button class="copy-btn" data-target="zip" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
+            <label for="email">Email</label>
+            <div class="field-value-wrap">
+                <span id="email" class="field-value">—</span>
+                <button class="copy-btn" data-target="email" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
+            <label for="username">Username</label>
+            <div class="field-value-wrap">
+                <span id="username" class="field-value">—</span>
+                <button class="copy-btn" data-target="username" title="Copy">📋</button>
+            </div>
+        </div>
+        <div class="field-group">
+            <label for="password">Password</label>
+            <div class="field-value-wrap">
+                <span id="password" class="field-value">—</span>
+                <button class="copy-btn" data-target="password" title="Copy">📋</button>
             </div>
         </div>
 
+        <div class="field-group age-range-controls">
+                    <label for="stateSelect">State Selection</label>
+                    <select id="stateSelect">
+                        <option value="">Random</option>
+                    </select>
+                </div>
         <div class="field-group age-range-controls">
             <label>Age Range</label>
             <div class="age-range-inputs">
@@ -85,6 +133,7 @@
                 <input type="number" id="maxAge" value="65" min="0" max="120">
             </div>
         </div>
+        
 
         <button id="regenerateBtn" class="primary-btn">Generate</button>
     </section>
